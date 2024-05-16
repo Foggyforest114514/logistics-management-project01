@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>物流管理系统</title>
+    <style>
+        #name{
+            display: inline-block;
+        }
+        #username {
+            display: inline-block;
+        }
+        #userid {
+            display: inline-block;
+        }
+        #userEmail {
+            display: inline-block;
+        }
+        #profileForm {
+            margin-top: 30px;
+        }
+        #preview {
+            width: 140px;
+            height: 140px;
+            border-radius: 40%;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        #preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .juzhong {
+            display: inline-block;
+        }
+        .container {
+            max-width: 1600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .radio-container {
+            display: inline-block;
+            margin-right: 20px; /* 设置单选框之间的间距 */
+        }
+        h1 {
+            margin-left: 50px;
+            text-align: left;
+        }
+        .profile-info {
+            margin-left: 50px;
+            margin-bottom: 20px;
+        }
+        .profile-info label {
+            font-weight: bold;
+        }
+        .profile-info p {
+            margin: 5px 0;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .edit-button {
+            padding: 10px 20px;
+            background-color: #060802;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .input-field {
+            margin-bottom: 10px;
+        }
+        .input-fieldxia {
+            margin-bottom: 10px;
+            width: 99%;
+        }
+        .input-field0 {
+            margin-bottom: 10px;
+            width: 99%;
+            height: 300px;
+        }
+        .input-field1 {
+            width: 15%;
+            margin-bottom: 40px;
+            float: left;
+        }
+        .input-field2 {
+            width: 40%;
+            margin-bottom: 20px;
+            height: 300px;
+        }
+        .input-field3 {
+            width: 10%;
+            margin-bottom: 20px;
+        }
+        .shouye1 {
+            padding: 20px 2%;
+            background-color: #030a12;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 30px;
+            margin-right: 800px;
+        }
+        .shouye2 {
+            padding: 20px 2%;
+            background-color: #000204;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 30px;
+        }
+        .search-box {
+            margin: 20px; /* 设置外边距 */
+            padding: 10px; /* 设置内边距 */
+            border: 1px solid #ccc; /* 设置边框 */
+            border-radius: 5px; /* 设置圆角 */
+            width: 30%; /* 设置宽度 */
+        }
+
+        .search-button {
+            background-color: #010306; /* 设置背景颜色 */
+            color: #fff; /* 设置文字颜色 */
+            border: none; /* 移除边框 */
+            padding: 8px 16px; /* 设置内边距 */
+            border-radius: 5px; /* 设置圆角 */
+            cursor: pointer; /* 设置鼠标样式为手型 */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div >
+        <button class="shouye1" onclick="tiaozhuan()">物流管理系统</button>
+        <img src="nemo.png" width="4.5%" height="3%" >
+        <button class="shouye2" onclick="tiaozhuan()">用户名称 </button>
+        <form action="/search" method="get" class="search-box">
+            <input type="text" name="search" placeholder="Search...">
+            <button type="submit" class="search-button">搜索</button>
+        </form>
+
+    </div>
+    <h1 >个人中心</h1>
+    <div class="profile-info">
+        <div class="input-field0">
+            <div class="input-field1" >
+                <label for="avatar">头像:</label>
+                <input type="file" id="imageInput" accept="image/*">
+                <div id="preview" ><img src="nemo.png"> </div>
+                <button class="edit-button" onclick="changeimg()">先点击修改头像再上传文件</button>
+            </div>
+            <div class="input-field2">
+                <div class="input-field">
+                    <label for="name">姓名: </label>
+                    <p id="name">李云逸</p>
+                </div>
+                <div class="input-field">
+                    <label for="userid">账号ID:</label>
+                    <p id="userid" >99999</p>
+                </div>
+                <div class="input-field">
+                    <label>注册时间:</label>
+                    <p class="juzhong">2024/4/28</p>
+                </div>
+                <div class="input-field">
+                    <label >实名认证:</label>
+                    <a class="juzhong" href=" ">已认证</a>
+                </div>
+                <div class="input-field">
+                    <label for="phone">电话:</label>
+                    <input type="text" id="phone" value="131****8368" disabled>
+                    <button class="edit-button" onclick="editPhone()">修改电话</button>
+                </div>
+            </div>
+        </div>
+        <div class="input-fieldxia">
+            <div class="input-field">
+                <label for="password">密码:</label>
+                <input type="password" id="password" value="123456" disabled>
+                <button class="edit-button" onclick="editPassword()">修改密码</button>
+            </div>
+            <div class="input-field">
+                <label for="userEmail">电子邮箱:</label>
+                <input type="text" id="userEmail"  value="1781306727@qq.com" disabled>
+                <button class="edit-button" onclick="editEmail()">修改电子邮箱</button>
+            </div>
+            <div class="input-field">
+                <label for="username">昵称:</label>
+                <p id="username">沉默星辰</p>
+                <button class="edit-button" onclick="editUsername()">编辑</button>
+            </div>
+            <form>
+                <div class="radio-container">
+                    <p class="juzhong"> 身份信息：</p>
+                    <input type="radio" id="student" name="role" value="student">
+                    <label for="student">用户</label>
+                </div>
+
+                <div class="radio-container">
+                    <input type="radio" id="admin" name="role" value="admin">
+                    <label for="admin">管理员</label>
+                </div>
+            </form>
+            <form id="profileForm">
+                <label for="address" >地址:</label><br>
+                <input type="text" id="address" name="address"><br><br>
+
+                <label for="bio">个人简介:</label><br>
+                <textarea id="bio" name="bio" rows="4" cols="50"></textarea><br><br>
+
+                <input type="button" value="保存" class="edit-button" onclick="saveProfile()">
+
+            </form>
+            <h2>已保存的信息</h2>
+            <div id="savedInfo">
+                <p><strong>地址:</strong> <span id="savedAddress"></span></p>
+                <p><strong>个人简介:</strong> <span id="savedBio"></span></p>
+            </div>
+            <div class="input-field">
+                <label for="gender">性别:</label>
+                <select id="gender" disabled>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+                <button class="edit-button" onclick="editGender()">Edit</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function tiaozhuan(){
+            alert("请上传文件");
+        }
+        function editUsername() {
+            var usernameField = document.getElementById('username');
+            var newUsername = prompt("Enter new username:");
+            if (newUsername !== null && newUsername !== "") {
+                usernameField.textContent = newUsername;
+                alert("Username changed to: " + newUsername);
+            }
+        }
+
+        function editEmail() {
+            var userEmailField = document.getElementById('userEmail');
+            var newUserEmail = prompt("Enter new Email:");
+            if (newUserEmail !== null && newUserEmail !== "") {
+                userEmailField.value = newUserEmail;
+                alert("Username changed to: " + newUserEmail);
+            }
+        }
+
+        function editPassword() {
+            var passwordfield = document.getElementById('password')
+            var newPassword = prompt("Enter new password:");
+            if (newPassword !== null && newPassword !== "") {
+                passwordfield.value= newPassword;
+                alert("Password changed successfully to:." + newPassword);
+            }
+        }
+
+        function editPhone() {
+            var phoneField = document.getElementById('phone');
+            var newPhone = prompt("Enter new phone number:");
+            if (newPhone !== null && newPhone !== "") {
+                phoneField.value = newPhone;
+                alert("Phone number changed to: " + newPhone);
+            }
+        }
+        function changeimg(){
+            alert("请上传文件")
+            document.getElementById('imageInput').addEventListener('change', function(event) {
+                var file = event.target.files[0];
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        var preview = document.getElementById('preview');
+                        var img = new Image();
+                        img.src = e.target.result;
+                        img.onload = function() {
+                            var canvas = document.createElement('canvas');
+                            canvas.width = 150;
+                            canvas.height = 150;
+                            var ctx = canvas.getContext('2d');
+                            ctx.beginPath();
+                            ctx.arc(75, 75, 75, 0, Math.PI * 2);
+                            ctx.closePath();
+                            ctx.clip();
+                            ctx.drawImage(img, 0, 0, 150, 150);
+                            preview.innerHTML = '';
+                            preview.appendChild(canvas);
+                        };
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+        function editGender() {
+            var genderSelect = document.getElementById('gender');
+            var genderButtons = document.getElementsByName('gender');
+
+            if (genderSelect.disabled) {
+                // Enable gender select and change button text
+                genderSelect.disabled = false;
+                genderButtons.forEach(function(button) {
+                    button.disabled = false;
+                });
+                genderButtons[0].textContent = "Save";
+                genderButtons[1].textContent = "Cancel";
+            } else {
+                // Save or cancel changes
+                if (genderButtons[0].textContent === "Save") {
+                    // Save changes
+                    var selectedGender = genderSelect.value;
+                    // Here you can send the selected gender to the server or perform any other action
+                    alert("Gender changed to: " + selectedGender);
+                } else {
+                    // Cancel changes
+                    genderSelect.value = genderSelect.dataset.previousValue;
+                }
+
+                // Disable gender select and change button text back to "Edit"
+                genderSelect.disabled = true;
+                genderButtons.forEach(function(button) {
+                    button.disabled = true;
+                });
+                genderButtons[0].textContent = "Edit";
+                genderButtons[1].textContent = "Edit";
+            }
+        }
+
+        // Function to initialize previous value of gender select
+        (function() {
+            var genderSelect = document.getElementById('gender');
+            genderSelect.dataset.previousValue = genderSelect.value;
+        })();
+        // 加载已保存的信息
+        window.onload = function() {
+            loadSavedProfile();
+        };
+
+        // 保存个人资料
+        function saveProfile() {
+            var address = document.getElementById("address").value;
+            var bio = document.getElementById("bio").value;
+
+            // 这里可以发送 AJAX 请求将数据发送到服务器进行保存
+            // 这里只是简单地更新已保存的信息以供演示
+            document.getElementById("savedAddress").innerText = address;
+            document.getElementById("savedBio").innerText = bio;
+        }
+
+        // 加载已保存的个人资料
+        function loadSavedProfile() {
+            // 这里可以发送 AJAX 请求从服务器加载已保存的信息
+            // 这里只是一个示例，假设已保存的信息为以下内容
+            var savedAddress = "翻斗花园一号街";
+            var savedBio = "我是翻斗花园胡图图，有一双会自己动的大耳朵";
+
+            document.getElementById("savedAddress").innerText = savedAddress;
+            document.getElementById("savedBio").innerText = savedBio;
+        }
+    </script>
+</body>
+</html>

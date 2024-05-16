@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>物流管理系统</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .menu button {
+            padding: 30px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .menu button:hover {
+            background-color: #45a049;
+        }
+
+        .content {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .form-container {
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<h1>物流管理系统</h1>
+
+<div class="menu">
+    <button class="tab-button active" onclick="showTab('快件管理')">快件管理</button>
+    <button class="tab-button" onclick="showTab('仓库管理')">仓库管理</button>
+    <button class="tab-button" onclick="showTab('库存记录')">库存记录</button>
+    <button class="tab-button" onclick="user()">个人界面</button>
+</div>
+
+<div id="快件管理" class="content active">
+    <h2>快件管理</h2>
+    <table>
+        <tr>
+            <th>快件编号</th>
+            <th>发货地址</th>
+            <th>收货地址</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>炙热沙城</td>
+            <td>硫磺岛</td>
+            <td>已发货</td>
+            <td>
+                <button onclick="editRecord('快件管理', '12345')">编辑</button>
+                <button onclick="deleteRecord('快件管理', '12345')">删除</button>
+            </td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>阿努比斯</td>
+            <td>明远湖</td>
+            <td>未发货</td>
+            <td>
+                <button onclick="editRecord('快件管理', '12345')">编辑</button>
+                <button onclick="deleteRecord('快件管理', '12345')">删除</button>
+            </td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>核子危机</td>
+            <td>地铁站</td>
+            <td>待发货</td>
+            <td>
+                <button onclick="editRecord('快件管理', '12345')">编辑</button>
+                <button onclick="deleteRecord('快件管理', '12345')">删除</button>
+            </td>
+        </tr>
+        <!-- 其他记录 -->
+    </table>
+
+    <div class="form-container">
+        <h3>添加快件记录</h3>
+        <form id="快件管理-form">
+            <input type="text" name="快件编号" placeholder="快件编号">
+            <input type="text" name="发货地址" placeholder="发货地址">
+            <input type="text" name="收货地址" placeholder="收货地址">
+            <input type="text" name="状态" placeholder="状态">
+            <button type="button" onclick="addRecord('快件管理')">添加记录</button>
+        </form>
+    </div>
+</div>
+
+<div id="仓库管理" class="content">
+    <h2>仓库管理</h2>
+    <table>
+        <tr>
+            <th>仓库编号</th>
+            <th>仓库名称</th>
+            <th>地址</th>
+            <th>联系电话</th>
+            <th>操作</th>
+        </tr>
+        <tr>
+            <td>1001</td>
+            <td>成都仓库</td>
+            <td>成都201B号仓库</td>
+            <td>1234567890</td>
+            <td>
+                <button onclick="editRecord('仓库管理', '1001')">编辑</button>
+                <button onclick="deleteRecord('仓库管理', '1001')">删除</button>
+            </td>
+        </tr>
+        <!-- 其他记录 -->
+    </table>
+
+    <div class="form-container">
+        <h3>添加仓库记录</h3>
+        <form id="仓库管理-form">
+            <input type="text" name="仓库编号" placeholder="仓库编号">
+            <input type="text" name="仓库名称" placeholder="仓库名称">
+            <input type="text" name="地址" placeholder="地址">
+            <input type="text" name="联系电话" placeholder="联系电话">
+            <button type="button" onclick="addRecord('仓库管理')">添加记录</button>
+        </form>
+    </div>
+</div>
+
+<div id="库存记录" class="content">
+    <h2>库存记录</h2>
+    <table>
+        <tr>
+            <th>快件编号</th>
+            <th>仓库编号</th>
+            <th>入库时间</th>
+            <th>出库时间</th>
+            <th>操作</th>
+        </tr>
+        <tr>
+            <td>12345</td>
+            <td>1001</td>
+            <td>2024-03-31 10:00:00</td>
+            <td>2024-04-02 12:00:00</td>
+            <td>
+                <button onclick="editRecord('库存记录', '12345')">编辑</button>
+                <button onclick="deleteRecord('库存记录', '12345')">删除</button>
+            </td>
+        </tr>
+        <!-- 其他记录 -->
+    </table>
+
+    <div class="form-container">
+        <h3>添加库存记录</h3>
+        <form id="库存记录-form">
+            <input type="text" name="快件编号" placeholder="快件编号">
+            <input type="text" name="仓库编号" placeholder="仓库编号">
+            <input type="text" name="入库时间" placeholder="入库时间">
+            <input type="text" name="出库时间" placeholder="出库时间">
+            <button type="button" onclick="addRecordford('库存记录')">添加记录</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function showTab(tabName) {
+        var tabs = document.getElementsByClassName("content");
+        for (var i = 0; i < tabs.length; i++) {
+            tabs[i].style.display = "none";
+        }
+
+        var buttons = document.getElementsByClassName("tab-button");
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].classList.remove("active");
+        }
+
+        document.getElementById(tabName).style.display = "block";
+        document.getElementById(tabName + "-button").classList.add("active");
+    }
+
+    function editRecord(tabName, recordId) {
+        var form = document.getElementById(tabName + "-form-" + recordId);
+        var formData = new FormData(form);
+
+        // TODO: 发送修改记录请求到后端
+
+        // 假设修改成功，刷新页面
+        location.reload();
+    }
+
+    function deleteRecord(tabName, recordId) {
+        if (confirm("确定要删除该记录吗？")) {
+            // TODO: 发送删除记录请求到后端
+
+            // 假设删除成功，刷新页面
+            location.reload();
+        }
+    }
+    function user(){
+        window.location.href="file:///E:/idea code/webtest/src/main/resources/static/user.html";
+    }
+    function addRecord(recordType) {
+        var form = document.getElementById(recordType + '-form');
+        var  Data = {
+            "仓库编号": form.elements["仓库编号"].value,
+            "仓库名称": form.elements["仓库名称"].value,
+            "地址": form.elements["地址"].value,
+            "联系电话": form.elements["联系电话"].value
+        };
+
+        var data={deviceid:form.elements["仓库编号"].value, devicename:form.elements["仓库名称"].value,
+            devicetype:form.elements["地址"].value, createtime:form.elements["联系电话"].value};
+        var xhr=new XMLHttpRequest();
+        xhr.open("POST","device/add_record?action=add_device_record",true);
+        xhr.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+        xhr.onreadystatechange=function(){
+            if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                console.log(xhr.responseText)
+            }
+        }
+        xhr.send(JSON.stringify(data));
+    }
+
+</script>
